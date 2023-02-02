@@ -1,3 +1,4 @@
+change from github online 
 v2
 
  //establish connection to data base. add \ to the source. only one present. achieve the link from server explorer, then select the database name and properties and string name.
