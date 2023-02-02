@@ -1,0 +1,71 @@
+code to create table
+----------------
+create table sangamTB(
+stID int primary key identity not null,
+name varchar(50) null,
+address varchar(50) null,
+age varchar(50) null,
+contact varchar(50) null
+)
+------------
+
+code for insert procedure
+------------------
+create proc spInsert
+@name varchar(50),
+@address varchar(50),
+@age varchar(50),
+@contact varchar(50)
+AS
+BEGIN
+insert into sangamTB values(@name,@address,@age,@contact);
+END
+----------------
+
+code for delete procedure
+------------
+create proc spDelete
+(
+@stID int
+)
+as
+begin
+Delete sangamTB where StID=@stID
+end
+-------
+
+
+code for update procedure
+-------------
+create proc spUpdate
+(
+@stID int null,
+@name nvarchar(50),
+@address nvarchar(50),
+@age nvarchar(50),
+@contact nvarchar(50)
+)
+as
+begin
+Update sangamTB set name=@name, address =@address, age =@age, contact=@contact where stID=@stID
+end
+-------------------
+
+
+
+code for search procedure
+----------- search from student id
+create proc spSearch(
+@stId int
+)
+as
+begin
+select * from sangamTB where stID=@stID 
+end
+------------------
+as
+begin
+--% makes the string more advanced thaat is the if jyoti is searched the jyoti dhakal also comes in search box---- search from name
+select * from sangamTB where name like '%' + @name + '%'
+end
+-------------------

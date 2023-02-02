@@ -1,0 +1,37 @@
+ //establish connection to data base. add \ to the source. only one present. achieve the link from server explorer, then select the database name and properties and string name.
+        string cs = "Data Source=NEXPLORE\\SQLEXPRESS;Initial Catalog=sangamDB;Integrated Security=True";
+
+
+
+
+
+//function of insert butom
+ protected void insert_Click(object sender, EventArgs e)
+        {
+            
+                SqlConnection con = new SqlConnection(cs);
+            //connect spInsert to front end
+            SqlCommand cmd = new SqlCommand("spInsert", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            // provide data to table
+            cmd.Parameters.AddWithValue("@name", name.Text);
+            cmd.Parameters.AddWithValue("@address", address.SelectedValue);
+            cmd.Parameters.AddWithValue("@age", age.Text);
+            cmd.Parameters.AddWithValue("@contact", contact.Text);
+            // make connection open and close
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+            // alert message
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('successfully Inserted');", true);
+          
+            // pass the empty value to textbox  when page reload
+            name.Text = "";
+            address.SelectedValue = "";
+            age.Text = "";
+            contact.Text = "";
+
+
+        }
+    }
